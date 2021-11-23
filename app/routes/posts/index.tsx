@@ -1,7 +1,12 @@
 import { useLoaderData, Link } from "remix";
 
+type Post = {
+  slug: string;
+  title: string;
+};
+
 export let loader = () => {
-  return [
+  let posts: Post[] = [
     {
       slug: "my-first-post",
       title: "My First Post"
@@ -11,10 +16,11 @@ export let loader = () => {
       title: "A Mixtape I Made Just For You"
     }
   ];
+  return posts;
 };
 
 export default function Posts() {
-  let posts = useLoaderData();
+  let posts = useLoaderData<Post[]>();
 
   return (
     <div>
